@@ -12,16 +12,16 @@ namespace ProjectSql
     {
         public int insertDataToCategories(string connectionString)
         {
-            string CategoryName;
-            Console.WriteLine("insert CategoryName");
-            CategoryName = Console.ReadLine();
-            string query = "INSERT INTO Categories(CategoryName) " +
-            "VALUES (@CategoryName) ";
+            string Category_Name;
+            Console.WriteLine("insert Category Name");
+            Category_Name = Console.ReadLine();
+            string query = "INSERT INTO Categories(Category_Name) " +
+            "VALUES (@Category_Name) ";
             using (SqlConnection cn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, cn))
             {
                 cn.Open();
-                cmd.Parameters.Add("@CategoryName", SqlDbType.VarChar, 30).Value = CategoryName;
+                cmd.Parameters.Add("@Category_Name", SqlDbType.VarChar, 30).Value = Category_Name;
                 int rowsAffected = cmd.ExecuteNonQuery();
                 cn.Close();
                 Console.WriteLine("rowsAffected: " + rowsAffected);
@@ -45,8 +45,8 @@ namespace ProjectSql
             Console.WriteLine("insert Path");
             Path = Console.ReadLine();
 
-            string query = "INSERT INTO Products(Category_ID,ProductName,ProductsDescription,Price,UrlImage) " +
-           "VALUES (@Category_ID,@ProductName,@ProductDescription, @Price, @UrlImage) ";
+            string query = "INSERT INTO Products(Category_ID,Product_Name,Description_Product,Price,Path) " +
+           "VALUES (@Category_ID,@Product_Name,@Description_Product, @Price, @Path) ";
             using (SqlConnection cn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, cn))
             {
@@ -78,7 +78,7 @@ namespace ProjectSql
 
             Console.WriteLine("Do you want to insert data  into Products table? y/n");
             string select1 = Console.ReadLine();
-            while (select1 == "y" || select == "Y")
+            while (select1 == "y" || select1 == "Y")
             {
                 InsertDataToProducts(connectionString);
                 Console.WriteLine("Do you want insert more params into Products table? y/n");
@@ -86,10 +86,7 @@ namespace ProjectSql
             }
         }
 
-        private void insertDataToCategories(object connectionString)
-        {
-            throw new NotImplementedException();
-        }
+  
 
         public void readDataProducts(string connectionString)
         {
